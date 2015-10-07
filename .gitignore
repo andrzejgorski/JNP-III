@@ -1,2 +1,6 @@
 *.swp
 *~
+*.pyc
+.idea
+navgar/navgar.egg-info/
+navgar/navgar/__pycache__/
