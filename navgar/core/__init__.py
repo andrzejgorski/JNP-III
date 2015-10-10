@@ -1,8 +1,11 @@
-# __init__.py
-
+import yaml
 from pyramid.config import Configurator
 from sqlalchemy import engine_from_config
 from sqlalchemy.orm import sessionmaker
+
+
+config = yaml.load('config.yaml')
+
 
 def db(request):
     maker = request.registry.dbmaker
