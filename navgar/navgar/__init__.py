@@ -1,9 +1,13 @@
 from pyramid.config import Configurator
+from sqlalchemy import create_engine
 
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
+
+    engine = create_engine('sqlite:///:memory:', echo=True)
+
     config = Configurator(settings=settings)
     config.include('pyramid_chameleon')
     config.add_static_view('static', 'static', cache_max_age=3600)
