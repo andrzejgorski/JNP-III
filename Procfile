@@ -1,1 +1,1 @@
-web: gunicorn_paster production.ini
+web: ./run
