@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+python navgar/setup.py develop
+python navgar/runapp.py
