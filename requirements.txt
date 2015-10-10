@@ -5,3 +5,4 @@ SQLAlchemy==1.0.4
 whitenoise==1.0.6
 eventlet==0.17.4
 waitress==0.8.10
+paster

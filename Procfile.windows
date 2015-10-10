@@ -1,1 +1,1 @@
-web: pserve production.ini
+web: gunicorn_paster production.ini
