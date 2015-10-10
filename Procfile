@@ -1,1 +1,1 @@
-web: pserve navgar/production.ini
+web: pserve production.ini
