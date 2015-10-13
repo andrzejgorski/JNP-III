@@ -1,7 +1,7 @@
 *.swp
 *~
 *.pyc
-.venv
+*.venv
 .idea
 navgar/navgar.egg-info/
 navgar/navgar/__pycache__/
