@@ -1,6 +1,6 @@
 import unittest
-from .views import my_view
-from core import database as db
+from navgar_app.views import my_view
+from navgar_core import database as db
 
 from pyramid import testing
 
@@ -19,4 +19,4 @@ class ViewTests(unittest.TestCase):
         self.assertEqual(info['project'], 'navgar')
 
     def test_db_connection(self):
-        connection = db.get_db_connection()
+        session = db.get_db_session()

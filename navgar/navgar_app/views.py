@@ -1,4 +1,6 @@
 from pyramid.view import view_config
+from navgar_core import database as db
+
 
 example_posts = [
     {
