@@ -20,5 +20,12 @@ def my_view(request):
 
 
 @view_config(route_name='posts/first', renderer='json')
-def example_post(request):
+def get_posts(request):
+    posts_limit = request.params['posts_limit']
+    # posts = (
+    #     db.query(Posts)
+    #     .order_by(Posts.date)
+    #     .limit(posts_limit)
+    #     .all()
+    # )
     return example_posts
