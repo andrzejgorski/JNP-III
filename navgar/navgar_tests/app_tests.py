@@ -1,6 +1,6 @@
 import unittest
 from navgar_app.views import (
-    my_view,
+    main_page,
     get_posts,
 )
 from navgar_core import database as db
@@ -28,16 +28,22 @@ class ViewTests(unittest.TestCase):
     def tearDown(self):
         testing.tearDown()
 
-    def test_my_view(self):
+    def test_main_page(self):
         request = testing.DummyRequest()
-        info = my_view(request)
-        self.assertEqual(info['project'], 'navgar')
+        info = main_page(request)
 
     def test_get_posts(self):
+        limit = 2
+
         request = testing.DummyRequest()
-        request.params['posts_limit'] = 12
+        request.params['posts_limit'] = limit
+
         response = get_posts(request)
-        self.assertEqual(response, example_posts)
+        # TODO get response from appi
+        response_data = response  # in future response.json()
+
+        self.assertEqual(response_data, example_posts)
+        self.assertEqual(len(response_data), limit)
 
     def test_db_connection(self):
         session = db.get_db_session()
