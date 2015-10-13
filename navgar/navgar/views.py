@@ -14,7 +14,7 @@ example_posts = [
 
 @view_config(route_name='home', renderer='templates/home.pt')
 def my_view(request):
-    return {}
+    return {'project': 'navgar'}
 
 
 @view_config(route_name='posts/first', renderer='json')
