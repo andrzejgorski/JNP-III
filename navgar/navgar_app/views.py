@@ -1,5 +1,6 @@
 from pyramid.view import view_config
 from navgar_core import database as db
+import redis
 
 
 example_posts = [
@@ -29,3 +30,11 @@ def get_posts(request):
     #     .all()
     # )
     return example_posts
+
+
+@view_config(route_name='test', renderer='json')
+def test_view(request):
+    redis_server = redis.Redis("localhost")
+    redis_server.set("name", "Andrzej")
+    value = redis_server.get("name")
+    return { 'value': str(value) }
