@@ -44,6 +44,3 @@ class ViewTests(unittest.TestCase):
 
         self.assertEqual(response_data, example_posts)
         self.assertEqual(len(response_data), limit)
-
-    def test_db_connection(self):
-        session = db.get_db_session()

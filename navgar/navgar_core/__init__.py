@@ -4,8 +4,6 @@ from sqlalchemy import engine_from_config
 from sqlalchemy.orm import sessionmaker
 
 
-config = yaml.load('config.yaml')
-
 
 def db(request):
     maker = request.registry.dbmaker
@@ -24,6 +22,7 @@ def db(request):
 
 def main(global_config, **settings):
     config = Configurator(settings=settings)
+    import ipdb; ipdb.set_trace()
     engine = engine_from_config(settings, prefix='sqlalchemy.')
     config.registry.dbmaker = sessionmaker(bind=engine)
     config.add_request_method(db, reify=True)

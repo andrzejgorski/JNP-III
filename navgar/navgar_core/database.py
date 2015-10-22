@@ -1,30 +1,34 @@
-import os
-import psycopg2
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Sequence
+from sqlalchemy import Column, Integer, String
 
 
-class Session():
-    db = None
+Base = declarative_base()
 
 
-def mock_session():
-    return Session()
+# url = os.environ.get('DATABASE_URL', 'url')
 
 
-try:
-    import urlparse
-except ImportError:
-    get_db_session = mock_session
+def create_db_session():
+    engine = create_engine('postgresql://postgres:postgres@localhost/test_db')
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    return session
 
 
-# def get_db_session():
-#     urlparse.uses_netloc.append("postgres")
-#     url = urlparse.urlparse(os.environ["DATABASE_URL"])
-#
-#     conn = psycopg2.connect(
-#         database=url.path[1:],
-#         user=url.username,
-#         password=url.password,
-#         host=url.hostname,
-#         port=url.port
-#     )
-#     return conn
+class User(Base):
+    __tablename__ = 'users'
+
+    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
+    name = Column(String)
+    fullname = Column(String)
+    password = Column(String)
+
+
+    def __repr__(self):
+        return "<User(name='{}', fullname='{}', password='{}')>".format(
+            self.name, self.fullname, self.password
+        )
