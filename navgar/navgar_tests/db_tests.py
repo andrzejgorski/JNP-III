@@ -1,3 +1,4 @@
+import navgar_core.database
 from navgar_core.database import (
     create_db_session,
     User,

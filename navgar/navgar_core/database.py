@@ -11,8 +11,19 @@ Base = declarative_base()
 # url = os.environ.get('DATABASE_URL', 'url')
 
 
+_engine = None
+
+
+def _get_engine():
+    global _engine
+    if _engine is not None:
+        return _engine
+    _engine = create_engine('postgresql://postgres:postgres@localhost/test_db')
+    return _engine
+
+
 def create_db_session():
-    engine = create_engine('postgresql://postgres:postgres@localhost/test_db')
+    engine = _get_engine()
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -32,3 +43,9 @@ class User(Base):
         return "<User(name='{}', fullname='{}', password='{}')>".format(
             self.name, self.fullname, self.password
         )
+
+
+def recreate_db():
+    engine = _get_engine()
+    for tbl in reversed(meta.sorted_tables):
+        engine.execute(tbl.delete())
