@@ -1,2 +1,2 @@
 db-url:
-    'postgresql://@localhost/test_db'
+  'postgresql://postgres:postgres@localhost/test_db'

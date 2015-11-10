@@ -14,16 +14,16 @@ Base = declarative_base()
 _engine = None
 
 
-def _get_engine():
+def _get_engine(url):
     global _engine
     if _engine is not None:
         return _engine
-    _engine = create_engine('postgresql://postgres:postgres@localhost/test_db')
+    _engine = create_engine(url)
     return _engine
 
 
-def create_db_session():
-    engine = _get_engine()
+def create_db_session(config):
+    engine = _get_engine(config['db-url'])
     Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -37,7 +37,6 @@ class User(Base):
     name = Column(String)
     fullname = Column(String)
     password = Column(String)
-
 
     def __repr__(self):
         return "<User(name='{}', fullname='{}', password='{}')>".format(
