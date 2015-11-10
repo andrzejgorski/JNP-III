@@ -4,11 +4,13 @@ from navgar_core.database import (
     create_db_session,
     User,
     recreate_db,
+    configure_engine,
 )
 
 
 def test_connection():
-    session = create_db_session(config)
+    configure_engine(config)
+    session = create_db_session()
     recreate_db()
     ed_user = User(name='ed', fullname='Ed Jones', password='edspassword')
     session.add(ed_user)

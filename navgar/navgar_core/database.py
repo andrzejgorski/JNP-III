@@ -12,24 +12,20 @@ from sqlalchemy import (
 
 
 Base = declarative_base()
-metadata = MetaData()
 
 
 _engine = None
 
 
-def _get_engine(url=None):
+def configure_engine(config):
     global _engine
-    if _engine is not None:
-        return _engine
-    _engine = create_engine(url)
-    return _engine
+    _engine = create_engine(config['db-url'])
 
 
-def create_db_session(config=None):
-    engine = _get_engine(config['db-url'])
-    Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
+def create_db_session():
+    global _engine
+    Base.metadata.create_all(_engine)
+    Session = sessionmaker(bind=_engine)
     session = Session()
     return session
 
@@ -55,7 +51,6 @@ class User(Base):
 # mapper(User, users_tbl,
 
 def recreate_db():
-    engine = _get_engine()
     for tbl in reversed(Base.metadata.sorted_tables):
-        engine.execute(tbl.delete())
-    Base.metadata.create_all(engine)
+        _engine.execute(tbl.delete())
+    Base.metadata.create_all(_engine)
