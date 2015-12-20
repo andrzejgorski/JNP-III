@@ -15,9 +15,9 @@ requires = [
     'waitress',
     ]
 
-setup(name='navgar',
+setup(name='navgar_app',
       version='0.0',
-      description='navgar',
+      description='navgar_app',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
         "Programming Language :: Python",
@@ -34,9 +34,9 @@ setup(name='navgar',
       zip_safe=False,
       install_requires=requires,
       tests_require=requires,
-      test_suite="navgar",
+      test_suite="navgar_app",
       entry_points="""\
       [paste.app_factory]
-      main = navgar:main
+      main = navgar_app:main
       """,
       )

@@ -15,6 +15,9 @@ example_posts = [
 ]
 
 
+session = db.create_db_session()
+
+
 @view_config(route_name='home', renderer='templates/home.pt')
 def main_page(request):
     return {}
@@ -22,14 +25,21 @@ def main_page(request):
 
 @view_config(route_name='posts/first', renderer='json')
 def get_posts(request):
-    posts_limit = request.params['posts_limit']
+    users = session.query(db.User).all()
+    # posts_limit = request.params['posts_limit']
     # posts = (
     #     db.query(Posts)
     #     .order_by(Posts.date)
     #     .limit(posts_limit)
     #     .all()
     # )
-    return example_posts
+    result = example_posts.copy()
+    for user in users:
+        result.append({
+            'author': user.name,
+            'content': 'Hej hej hej',
+        })
+    return result
 
 
 @view_config(route_name='test', renderer='json')
