@@ -6,8 +6,8 @@
 # External Services Integration
 # NoSQL
 # Cache
+# Full Text Search
 # Load Balancer
 # Web Security
-# Full Text Search
 # Front performance
-# Async
+# Asynct

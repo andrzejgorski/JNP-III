@@ -1,0 +1,33 @@
+- /home/
+        - lista użytkowników z największa liczbą postów/folowersów
+        - lista popularnych postów
+        - przekierowanie do rejestracji i logowania
+        - wyszukiwarka użytkowników/postów za pomocą SQL
+        na potem:
+        - wyszukiwarka użytkowników/postów z Sphixem
+        - ma być w cache (Varish)
+
+- /login/
+        - strona z zaloguj się
+
+- /register/
+        - strona z rejestracją
+
+- /my_page/
+        - dodaj post
+        - najnowsze posty swoje i followed
+
+- /user/<name>/
+        -  ostatnie 10 postów użytkownika
+        -  na proźbę dociągamy AJAXem wcześniejesze
+        -  jeśli jesteśmy na swojej stronie to możemy dodać post
+        -  na nieswojej stronie przycisk follow
+        -  osoby które followuje dana osoba
+
+Andrzej:
+- integracja z Google
+- backend do /user/<name>/
+
+Krzysiek:
+- /home punkty 1 i 2 po stronie JS
+- /user/<name> po stronie JS
