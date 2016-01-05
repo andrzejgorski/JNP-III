@@ -8,6 +8,7 @@ from sqlalchemy import (
     String,
     MetaData,
     Table,
+    ForeignKey,
 )
 
 
@@ -40,6 +41,25 @@ users_tbl = Table(
 )
 
 
+posts_tbl = Table(
+    'posts',
+    Base.metadata,
+    Column('id', Integer, Sequence('post_id_seq'), primary_key=True),
+    Column('title', String(40), nullable=True),
+    Column('content', String(300), nullable=False),
+    Column('user_id', Integer, ForeignKey("users.id"), nullable=False),
+)
+
+
+class Post(Base):
+    __tablename__ = 'posts'
+
+    def __repr__(self):
+        return "<Post(title='{}', content='{}', user='{}')>".format(
+            self.title, self.content, self.user_id
+        )
+
+
 class User(Base):
     __tablename__ = 'users'
 
@@ -48,7 +68,6 @@ class User(Base):
             self.name, self.fullname, self.password
         )
 
-# mapper(User, users_tbl,
 
 def recreate_db():
     for tbl in reversed(Base.metadata.sorted_tables):
