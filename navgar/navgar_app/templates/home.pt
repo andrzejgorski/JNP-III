@@ -1,22 +1,32 @@
 <!DOCTYPE html>
-<html lang="${request.locale_name}" ng-app="navgar">
+<html lang="pl" ng-app="navgar">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Strona główna</title>
     <!--?<link href="//oss.maxcdn.com/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
     <script src="/static/js/app.js"></script>
   </head>
   <body>
-    <h1> Hello! </h1>
-    <div ng-controller="PostsCtrl as postsCtrl">
-        <div ng-repeat="post in postsCtrl.posts">
-            <p>{{ post.author }}</p>
-            <p>{{ post.content }}</p>
+    <h1> Witamy w serwisie Navgar! </h1>
+    <section>
+        <h3> TOP 5 najpopularniejszych postów </h3>
+        <div ng-controller="PostsCtrl as postsCtrl">
+            <div ng-repeat="post in postsCtrl.posts">
+                <p>{{ post.author }}</p>
+                <p>{{ post.content }}</p>
+            </div>
         </div>
-    </div>
+    </section>
+    <section>
+        <h3> TOP 5 najpopularniejszych osób </h3>
+        <div ng-controller="PopularUsersCtrl as popularUsers">
+            <div ng-repeat="popularUser in popularUsers.users">
+            <p>{{ popularUser.user }}</p>
+            <p>{{ popularUser.followers }}</p>
+        </div>
+        </div>
+    </section>
     <!--?<script src="//oss.maxcdn.com/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
   </body>
 </html>
